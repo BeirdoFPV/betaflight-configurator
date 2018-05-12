@@ -329,6 +329,7 @@ var FC = {
             fast_pwm_protocol:          0,
             motor_pwm_rate:             0,
             digitalIdlePercent:         0,
+            digitalMaxPercent:          0,
             gyroUse32kHz:               0,
         };
 

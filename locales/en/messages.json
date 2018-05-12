@@ -952,6 +952,12 @@
     "configurationDigitalIdlePercentHelp": {
         "message": "This is the 'idle' value in percent of maximum throttle that is sent to the ESCs when the craft is armed and the trottle stick is at minimum position. Increase the percent value to gain more idle speed."
     },
+    "configurationDigitalMaxPercent": {
+        "message": "Motor Maximum Throttle Value [percent]"
+    },
+    "configurationDigitalMaxPercentHelp": {
+        "message": "This is the 'maximum' value in percent of maximum throttle that is sent to the ESCs when the craft is armed and the trottle stick is at maximum position. Increase the percent value to reduce max motor speed."
+    },
     "configurationThrottleMinimum": {
         "message": "Minimum Throttle (Lowest ESC value when armed)"
     },

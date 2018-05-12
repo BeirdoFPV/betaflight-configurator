@@ -815,7 +815,9 @@ MspHelper.prototype.process_data = function(dataHandler) {
                 PID_ADVANCED_CONFIG.motor_pwm_rate = data.readU16();
                 if (semver.gte(CONFIG.apiVersion, "1.24.0")) {
                     PID_ADVANCED_CONFIG.digitalIdlePercent = data.readU16() / 100;
-
+                    if (semver.gte(CONFIG.apiVersion, "1.39.0")) {
+                        PID_ADVANCED_CONFIG.digitalMaxPercent = data.readU16() / 100;
+                    }    
                     if (semver.gte(CONFIG.apiVersion, "1.25.0")) {
                         PID_ADVANCED_CONFIG.gyroUse32kHz = data.readU8();
                     }
@@ -1447,7 +1449,9 @@ MspHelper.prototype.crunch = function(code) {
                 .push16(PID_ADVANCED_CONFIG.motor_pwm_rate);
             if (semver.gte(CONFIG.apiVersion, "1.24.0")) {
                 buffer.push16(PID_ADVANCED_CONFIG.digitalIdlePercent * 100);
-
+                if (semver.gte(CONFIG.apiVersion, "1.39.0")) {
+                    buffer.push16(PID_ADVANCED_CONFIG.digitalMaxPercent * 100);
+                }
                 if (semver.gte(CONFIG.apiVersion, "1.25.0")) {
                     buffer.push8(PID_ADVANCED_CONFIG.gyroUse32kHz);
                 }

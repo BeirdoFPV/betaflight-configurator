@@ -352,6 +352,7 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
                 $('div.unsyncedpwmfreq').hide();
 
                 $('div.digitalIdlePercent').show();
+                $('div.digitalMaxPercent').show();
             } else {
                 $('div.minthrottle').show();
                 $('div.maxthrottle').show();
@@ -361,6 +362,7 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
                 $("input[id='unsyncedPWMSwitch']").change();
 
                 $('div.digitalIdlePercent').hide();
+                $('div.digitalMaxPercent').hide();
             }
         }).change();
 
@@ -368,6 +370,10 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
         $('input[name="unsyncedpwmfreq"]').val(PID_ADVANCED_CONFIG.motor_pwm_rate);
         $('input[name="digitalIdlePercent"]').val(PID_ADVANCED_CONFIG.digitalIdlePercent);
 
+        if (semver.gte(CONFIG.apiVersion, "1.39.0")) {
+            $('input[name="digitalMaxPercent"]').val(PID_ADVANCED_CONFIG.digitalMaxPercent);
+        }
+        
         // Gyro and PID update
         var gyroUse32kHz_e = $('input[id="gyroUse32kHz"]');
         var gyro_select_e = $('select.gyroSyncDenom');
@@ -964,6 +970,9 @@ TABS.configuration.initialize = function (callback, scrollPosition) {
             PID_ADVANCED_CONFIG.gyro_sync_denom = parseInt(gyro_select_e.val());
             PID_ADVANCED_CONFIG.pid_process_denom = parseInt(pid_select_e.val());
             PID_ADVANCED_CONFIG.digitalIdlePercent = parseFloat($('input[name="digitalIdlePercent"]').val());
+            if (semver.gte(CONFIG.apiVersion, "1.39.0")) {
+                PID_ADVANCED_CONFIG.digitalMaxPercent = parseFloat($('input[name="digitalMaxPercent"]').val());
+            }
             if (semver.gte(CONFIG.apiVersion, "1.25.0")) {
                 PID_ADVANCED_CONFIG.gyroUse32kHz = $('input[id="gyroUse32kHz"]').is(':checked') ? 1 : 0;
             }
